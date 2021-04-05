@@ -9,7 +9,7 @@ Jot down any mathematical expression as you would on a paper, Let Machine Learni
 
 2. Get the math symbols dataset from [here](https://www.kaggle.com/xainano/handwrittenmathsymbols) in case you would want to add more functionalities.
 
-3. Get the Wolfram API ID from [here](https://products.wolframalpha.com/api/)
+3. Get the Wolfram API ID from [here](https://products.wolframalpha.com/api/).
 
 4. Open up Terminal/CMD and type in:
 
