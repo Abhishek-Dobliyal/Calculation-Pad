@@ -43,4 +43,4 @@ python3 app.py
 
 - The pre-trained model has an accuracy of over **97%**.
 
-- You need extract data as well as train your model again if you chose to add more data (digits/symbols).
+- You need extract data (from the dataset) as well as train your model again if you chose to add more functionality (digits/symbols).
