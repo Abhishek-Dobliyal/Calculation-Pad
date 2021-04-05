@@ -1,7 +1,7 @@
 # Calculation-Pad
 Jot down any mathematical expression as you would on a paper, Let Machine Learning take care of the rest.
 
-![](demo.gif)
+![](./ScreenShots/demo.gif)
 
 ## Installation and Dependencies
 
