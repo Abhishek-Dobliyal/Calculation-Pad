@@ -5,3 +5,5 @@ opencv-python==4.5.1.48
 numpy==1.19.5
 Pillow==8.1.2
 wolframalpha==5.0.0
+streamlit==0.84.1
+streamlit-drawable-canvas==0.8.0
