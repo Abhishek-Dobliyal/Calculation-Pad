@@ -56,7 +56,8 @@ def main_app():
         background_color = "#ffffff",
         display_toolbar = True,
         update_streamlit = True,
-        height=900,
+        height = 500,
+        width = 650,
         key = "canvas"
     )
     st.markdown("<br>", unsafe_allow_html=True)
