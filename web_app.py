@@ -7,8 +7,7 @@ import time
 # Helping Variables
 INFO_MSGS = {
     0: "Expression Evaluated Successfully!",
-    1: "Proceeding without API Key! Results may not be that accurate.",
-    2: "Could not evaluate the expression!"
+    1: "Could not evaluate the expression!"
 }
 
 DIGITS_SYMBOLS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 
@@ -62,7 +61,6 @@ def main_app():
     )
     st.markdown("<br>", unsafe_allow_html=True)
 
-    api_key = st.text_input("Enter your Wolfram API (if you possess one)", type="password")
     exp, res = "Expression", "Result"
     show_results = False
     helper_component = st.empty()
@@ -70,19 +68,13 @@ def main_app():
 
     if st.button("Evaluate"):
         with st.spinner("Working on it..."):
-            ans = utilities.display_predictions(canvas_result.image_data, api_key)
+            ans = utilities.display_predictions(canvas_result.image_data)
             if ans:
                 exp, res = ans
-                if utilities.is_connected():
-                    if api_key:
-                        if exp and res:
-                            msg_idx = 0 
-                    else:
-                        msg_idx = 1
+                msg_idx = 0
             else:
-                msg_idx = 2
+                msg_idx = 1
                 exp, res = "Error", "Undefined"
-            
             show_results = True
         
     # Components layout
@@ -107,10 +99,8 @@ def main_app():
         
         if msg_idx == 0:
             helper_component.success(INFO_MSGS[msg_idx])
-        elif msg_idx == 1:
+        else:
             helper_component.info(INFO_MSGS[msg_idx])
-        elif msg_idx == 2:
-            helper_component.error(INFO_MSGS[msg_idx])
         
         time.sleep(2)
         helper_component.empty()
@@ -118,7 +108,6 @@ def main_app():
     # Sidebar for extra info
     st.sidebar.markdown("Combination of the following digits/symbols can be evaluated:")
     st.sidebar.write(DIGITS_SYMBOLS)
-    st.sidebar.markdown("Get your Wolfram API key from [Here](https://products.wolframalpha.com/simple-api/documentation/)")
 
 if __name__ == "__main__":
     main_app()

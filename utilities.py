@@ -30,13 +30,14 @@ HELPER_DICT = {
     '19': 'log',
     '20': '√'
 }
+API_KEY = "L9YWUY-6TG2Q4QJQH"
 
 # Load the pre-trained model
-with open("./Model/model.json", "r") as mdl:
+with open("../Model/model.json", "r") as mdl:
         model = mdl.read()
     
 loaded_model = model_from_json(model)
-loaded_model.load_weights("./Model/weights.h5")
+loaded_model.load_weights("../Model/weights.h5")
 
 def is_connected():
     ''' Checks whether an active internet connection
@@ -48,24 +49,21 @@ def is_connected():
     except Exception:
         return False
 
-def evaluate_expression(expression, api_key=""):
+def evaluate_expression(expression):
     ''' Evaluates an expression using WolframAlpha '''
     try:
-        if api_key:
-            client = wolframalpha.Client(api_key)
-            res = client.query(expression)
-            res = next(res.results).text
-            # Get the result upto 3 decimal places in case of floating point answers
-            # Example -> 2.1972245773362193827904904738450514092949811156454989034693886672...
-            dot_idx = res.find(".")
-            if dot_idx != -1:
-                ans = res[:dot_idx] + res[dot_idx:dot_idx+4]
-                return ans
-            # Example -> 4/3 (irreducible)
-            ans = res[:res.index("(")] if "irreducible" in res else res 
-            return str(round(eval(ans), 3))
-        
-        return str(round(eval(expression), 3))
+        client = wolframalpha.Client(API_KEY)
+        res = client.query(expression)
+        res = next(res.results).text
+        # Get the result upto 3 decimal places in case of floating point answers
+        # Example -> 2.1972245773362193827904904738450514092949811156454989034693886672...
+        dot_idx = res.find(".")
+        if dot_idx != -1:
+            ans = res[:dot_idx] + res[dot_idx:dot_idx+4]
+            return ans
+        # Example -> 4/3 (irreducible)
+        ans = res[:res.index("(")] if "irreducible" in res else res
+        return str(round(eval(ans), 3))
     except Exception as e:
         print(e)
         return None
@@ -140,11 +138,12 @@ def display_predictions(img, api_key=""):
 
         print("Expression", expression)
         try:
-            ans = evaluate_expression(expression, api_key)
+            ans = evaluate_expression(expression)
             if ans:
                 return (expression, ans)
             return None
-        except:
+        except Exception as e:
+            print(e)
             return None
     
     return None
