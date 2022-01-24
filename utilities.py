@@ -33,11 +33,11 @@ HELPER_DICT = {
 API_KEY = "YOUR API-KEY-HERE"
 
 # Load the pre-trained model
-with open("./Model/model.json", "r") as mdl:
+with open("../Model/model.json", "r") as mdl:
         model = mdl.read()
     
 loaded_model = model_from_json(model)
-loaded_model.load_weights("./Model/weights.h5")
+loaded_model.load_weights("../Model/weights.h5")
 
 def is_connected():
     ''' Checks whether an active internet connection
