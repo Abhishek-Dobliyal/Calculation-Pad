@@ -33,7 +33,7 @@ HELPER_DICT = {
 API_KEY = "L9YWUY-6TG2Q4QJQH"
 
 # Load the pre-trained model
-with open("../Model/model.json", "r") as mdl:
+with open("./Model/model.json", "r") as mdl:
         model = mdl.read()
     
 loaded_model = model_from_json(model)
