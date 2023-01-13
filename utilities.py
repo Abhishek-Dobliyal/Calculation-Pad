@@ -30,7 +30,7 @@ HELPER_DICT = {
     '19': 'log',
     '20': '√'
 }
-API_KEY = "YOUR-API-ID-HERE"
+API_KEY = "6Q9TX5-L67L57T6AT"
 
 # Load the pre-trained model
 with open("../Model/model.json", "r") as mdl:
